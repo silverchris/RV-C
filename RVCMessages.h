@@ -470,7 +470,7 @@ inline bool ParseRVCDCLoadStatus1(const tN2kMsg &N2kMsg, uint8_t &Instance, uint
                     uint8_t &OperatingStatus, uint8_t &OperatingMode,
                     uint8_t &VariableLvl, uint8_t &Priority, uint8_t &Delay,
                     uint8_t &DemandCurrent, uint16_t &PresentCurrent){
-  ParseRVCPGN1FFBD(N2kMsg, Instance, Group, OperatingStatus, OperatingMode,
+  return ParseRVCPGN1FFBD(N2kMsg, Instance, Group, OperatingStatus, OperatingMode,
                    VariableLvl, Priority, Delay, DemandCurrent, PresentCurrent);
 }
 
@@ -505,7 +505,7 @@ bool ParseRVCPGN1FEDC(const tN2kMsg &N2kMsg, uint8_t &Instance, uint8_t &LockSta
 inline bool ParseRVCDCLoadStatus2(const tN2kMsg &N2kMsg, uint8_t &Instance, uint8_t &LockStatus,
                     uint8_t &OvercurrentStatus, uint8_t &OverrideStatus,
                     uint8_t &EnableStatus, uint8_t &LastCom, uint8_t &InterlockStatus){
-  ParseRVCPGN1FEDC(N2kMsg, Instance, LockStatus, OvercurrentStatus, OverrideStatus,
+  return ParseRVCPGN1FEDC(N2kMsg, Instance, LockStatus, OvercurrentStatus, OverrideStatus,
                    EnableStatus, LastCom, InterlockStatus);
 }
 
