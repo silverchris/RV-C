@@ -214,7 +214,7 @@ enum tRVCDCLoadCMD {
                             RVCDCLoadLock = 33,                 // 33 When received, certain commands for this instance will be ignored until an ‘Unlock’ is received
                             RVCDCLoadUnlock = 34,               // When received, removes lock condition for instance allowing all other commands to be recognized
                             RVCDCLoadFlash = 49                 // Alternately set the output to 0% and 100.
-}
+};
 
 
 
