@@ -356,7 +356,7 @@ void SetRVCPGN1FFBD(tN2kMsg &N2kMsg, uint8_t Instance, uint8_t Group,
                     uint8_t DemandCurrent, uint16_t PresentCurrent) {
     uint8_t Mode = OperatingMode;
     Mode |= (VariableLvl&0x01) << 1;
-    Mode |= (Priority&0x0F) << 2;
+    Mode |= (Priority&0x0F) << 4;
 
     N2kMsg.SetPGN(0x1FFBD);
     N2kMsg.Priority=6;
@@ -385,7 +385,7 @@ bool ParseRVCPGN1FFBD(const tN2kMsg &N2kMsg, uint8_t &Instance, uint8_t &Group,
 
   OperatingMode = Mode&0x01;
   Mode |= (VariableLvl >> 1)&0x01;
-  Mode |= (Priority >> 2)&0x0F;
+  Mode |= (Priority >> 4)&0x0F;
 
   return true;
 }
