@@ -384,8 +384,8 @@ bool ParseRVCPGN1FFBD(const tN2kMsg &N2kMsg, uint8_t &Instance, uint8_t &Group,
   PresentCurrent=N2kMsg.Get2ByteUInt(Index);
 
   OperatingMode = Mode&0x01;
-  Mode |= (VariableLvl >> 1)&0x01;
-  Mode |= (Priority >> 4)&0x0F;
+  VariableLvl = (Mode >> 1)&0x01;
+  Priority = (Mode >> 4)&0x0F;
 
   return true;
 }
