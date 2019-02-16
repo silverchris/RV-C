@@ -91,7 +91,7 @@ bool ParseRVCPGNE800(const tN2kMsg &N2kMsg, tISOAckType &Ack, uint8_t &Inst, uin
 void SetRVCPGNFEEB(tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
     N2kMsg.SetPGN(0xFEEB);
     N2kMsg.Priority=6;
-    N2kMsg.SetIsTPMessage(UseTP);
+    N2kMsg.SetIsTPMessage(true);
 
     //find how long our buffer should be, and add space for the 4 "*"s and terminator
     int buf_len = strlen(Make)+strlen(Model)+strlen(Serial)+strlen(Unit)+5;
