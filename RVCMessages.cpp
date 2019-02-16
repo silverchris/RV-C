@@ -104,7 +104,7 @@ void SetRVCPGNFEEB(tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char 
 
 bool ParseRVCPGNFEEB(const tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
   if (N2kMsg.PGN!=0xFEEB) return false;
-  int buf_len = N2kMsg.DataLen;
+  size_t buf_len = N2kMsg.DataLen;
   char buffer[buf_len];
 
   int Index=0;
