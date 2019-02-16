@@ -27,7 +27,8 @@
 //
 
 
-
+#include <cstring>
+#include <cstdio>
 #include "RVCMessages.h"
 
 
@@ -103,12 +104,12 @@ void SetRVCPGNFEEB(tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char 
 
 bool ParseRVCPGNFEEB(const tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
   if (N2kMsg.PGN!=0xFEEB) return false;
-
-  char buffer[N2kMsg.DataLen];
+  int buf_len = N2kMsg.DataLen;
+  char buffer[buf_len];
 
   int Index=0;
 
-  N2kMsg.GetVarStr(N2kMsg.DataLen, buffer, Index);
+  N2kMsg.GetVarStr(buf_len, buffer, Index);
   printf("%s\r\n", buffer);
 
   return true;
