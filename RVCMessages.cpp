@@ -87,6 +87,35 @@ bool ParseRVCPGNE800(const tN2kMsg &N2kMsg, tISOAckType &Ack, uint8_t &Inst, uin
 
 
 //*****************************************************************************
+// Product identification
+void SetRVCPGNFEEB(tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
+    N2kMsg.SetPGN(0xFEEB);
+    N2kMsg.Priority=6;
+    N2kMsg.SetIsTPMessage(UseTP);
+
+    //find how long our buffer should be, and add space for the 4 "*"s and terminator
+    int buf_len = strlen(Make)+strlen(Model)+strlen(Serial)+strlen(Unit)+5;
+    char buffer[buf_len];
+    sprintf(buffer, "%s*%s*%s*%s", Make, Model, Serial, Unit);
+
+    N2kMsg.AddStr(buffer, buf_len);
+}
+
+bool ParseRVCPGNFEEB(const tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
+  if (N2kMsg.PGN!=0xFEEB) return false;
+
+  char buffer[N2kMsg.DataLen];
+
+  int Index=0;
+
+  N2kMsg.GetVarStr(N2kMsg.DataLen, buffer, Index);
+  printf("%s\r\n", buffer);
+
+  return true;
+}
+
+
+//*****************************************************************************
 // DC Source Status 1
 void SetRVCPGN1FFFD(tN2kMsg &N2kMsg, uint8_t Instance, uint8_t DevPri,
                       uint16_t Vdc, uint32_t Adc) {

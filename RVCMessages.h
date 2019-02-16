@@ -239,6 +239,29 @@ inline bool ParseRVCRequestDGN (const tN2kMsg &N2kMsg, uint8_t &Dest, uint32_t &
 
 
 
+//*****************************************************************************
+// Product identification - FEEBh
+// Input:
+//  - Make
+//  - Model
+//  - Serial
+//  - Unit Number
+// Output:
+//  - N2kMsg                RV_C message ready to be send.
+void SetRVCPGNFEEB(tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit);
+
+inline void SetRVCProductIdentification(tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
+   SetRVCPGNFEEB(N2kMsg, Make, Model, Serial, Unit);
+}
+
+bool ParseRVCPGNFEEB(const tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit);
+inline bool ParseRVCProductIdentification(const tN2kMsg &N2kMsg, char *Make, char *Model, char *Serial, char *Unit) {
+  return ParseRVCPGNFEEB(N2kMsg, Make, Model, Serial, Unit);
+}
+
+
+
+
 
 //*****************************************************************************
 // DC Source Status 1 - 1FFFDh
